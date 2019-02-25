@@ -9,6 +9,8 @@ public class Constants {
     public static final Long MULTIPLE_LOGIN_ATTEMPTS_EC=103L ;
     public static final Long INCORRECT_USER_INFO_EC=104L ;
     public static final Long INVALID_DATE_EC=105L ;
+    public static final Long USER_NOT_LOGGED_IN_EC=106L ;
+    public static final String USER_NOT_LOGGED_IN_EM = "User {%s} not logged in. Please login in before using the system.";
     public static final String INVALID_DATE_EM="Invalid date format";
     public static final String SUCCESS_EM="success";
     public static final String UNKNOWN_ERROR_EM = "Unknow system error. Please try later";

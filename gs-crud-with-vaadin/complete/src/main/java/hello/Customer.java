@@ -118,7 +118,7 @@ public class Customer {
 		return userName;
 	}
 
-	public void setUserName(String firstName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 

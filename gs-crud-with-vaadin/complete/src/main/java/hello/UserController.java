@@ -14,7 +14,10 @@ public class UserController {
     @Autowired UserService userService ;
 
    // @PostMapping("/newsignup")
-    @RequestMapping(value = "/newsignup", method = RequestMethod.POST, produces = {"application/json"})
+    /*
+        Signup.
+     */
+    @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = {"application/json"})
     @ResponseBody Response signup(@RequestBody UserInfoDTO userInfo){
 
         Response resp = new Response();
