@@ -4,6 +4,9 @@ package hello;
 import javax.persistence.*;
 import java.util.Date;
 
+/*
+Compute class for storing all the values. An entity class
+ */
 @Entity
 public class Compute {
     @Id

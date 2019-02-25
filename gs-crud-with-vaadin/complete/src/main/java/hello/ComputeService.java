@@ -12,10 +12,9 @@ import java.util.List;
 public class ComputeService {
 
     @Autowired
- //   private CustomerRepository repository;
     private ComputeRepository computeRepository ;
 
-    public List<ComputeObj> getPrevComputations(Date beforeDate,Date afterDate,Date onDate,int limit) throws CustomException{
+    public List<ComputeObj> getPrevComputations(Date beforeDate,Date afterDate,Date onDate,Integer limit) throws CustomException{
 
         List<ComputeObj> computeObjList = new ArrayList<ComputeObj>();
 
@@ -25,12 +24,13 @@ public class ComputeService {
 
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                //Assume a historical date
                 Date d = sdf.parse("01/01/1971");
                 afterDate = afterDate == null ? d : afterDate;
             }catch(Exception e){
                 throw new CustomException(Constants.UNKNOW_ERROR_EC,Constants.UNKNOWN_ERROR_EM);
             }
-            computeList = computeRepository.findAllByEventDateBetween(beforeDate, afterDate);
+            computeList = computeRepository.findAllByEventDateBetween(afterDate, beforeDate);
         }else if(onDate != null){
             computeList = computeRepository.findAllByEventDate(onDate);
         }
@@ -39,7 +39,7 @@ public class ComputeService {
         for(Compute c : computeList){
             ComputeObj obj = new ComputeObj(c.getA(),c.getB(),c.getC(),c.getX(),c.getY1(),c.getY2() );
             computeObjList.add(obj);
-            if(!(limit <= 0) && ++maxElements == limit){
+            if(limit !=null && !(limit <= 0) && ++maxElements == limit){
                 break ;
             }
         }

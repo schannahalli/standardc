@@ -19,31 +19,49 @@ public class ComputeController {
     @Autowired
     private ComputeService service ;
 
+    /*
+        Use from - to date to get all the events within this range.
+        use from to get all events from date until current date
+        use to to get all events upto to.
+        use ondate to get all events on this date.
+     */
     @GetMapping("/previous-bydate")
     @ResponseBody
-    public ComputeResponse getPreviousComputationsByDate(@PathVariable("beforedate")String beforedateStr,@PathVariable("afterdate")String afterdateStr,@PathVariable("ondate") String onDateStr,@PathVariable("limit")int limit){
+    public ComputeResponse getPreviousComputationsByDate(@RequestParam(value="to",required=false)String beforedateStr,@RequestParam(value="from",required=false)String afterdateStr,@RequestParam(value="ondate",required=false) String onDateStr,@RequestParam(value="limit",required=false)Integer limit){
         ComputeResponse response = new ComputeResponse() ;
+
+        Date beforedate = null;
+        Date afterdate = null;
+        Date onDate = null;
+
         try {
-            Date beforedate = null;
-            if(beforedateStr != null){
-                beforedate = new SimpleDateFormat("MM/dd/YYYY").parse(beforedateStr);
+            if (beforedateStr != null) {
+                beforedate = new SimpleDateFormat("mm/dd/yyyy").parse(beforedateStr);
             }
 
-            Date afterdate = null;
-            if(afterdateStr != null){
-                afterdate = new SimpleDateFormat("MM/dd/YYYY").parse(afterdateStr);
+            if (afterdateStr != null) {
+                afterdate = new SimpleDateFormat("mm/dd/yyyy").parse(afterdateStr);
             }
 
-            Date onDate = null;
-            if(onDateStr != null){
-                onDate = new SimpleDateFormat("MM/dd/YYYY").parse(onDateStr);
+            if (onDateStr != null) {
+                onDate = new SimpleDateFormat("mm/dd/yyyy").parse(onDateStr);
             }
+        }catch(Exception e) {
+            response.errorCode = Constants.INVALID_DATE_EC;
+            response.errorMessage = Constants.INVALID_DATE_EM;
+            return response ;
+        }
 
+        try{
 
             List<ComputeObj> computeObjList = service.getPrevComputations(beforedate,afterdate,onDate,limit);
             response.setComputeObjList(computeObjList);
+            response.errorCode = Constants.SUCCESS_EC;
+            response.errorMessage=Constants.SUCCESS_EM;
+            
         }catch(Exception e){
-            System.out.println("error");
+            response.errorMessage = Constants.UNKNOWN_ERROR_EM;
+            response.errorCode = Constants.UNKNOW_ERROR_EC;
         }
         return response ;
     }
