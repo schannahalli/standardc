@@ -1,8 +1,11 @@
 # standardc
 
-POST /compute HTTP/1.1<\n>
-Host: localhost:8080.
-Content-Type: application/json.
+POST /compute HTTP/1.1
+
+Host: localhost:8080
+
+Content-Type: application/json
+
 cache-control: no-cache.
 Postman-Token: 57030a99-2390-4c6d-8f9a-a39aef830932.
 {.
