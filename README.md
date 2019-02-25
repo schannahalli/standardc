@@ -1,6 +1,6 @@
 # standardc
 
-POST /compute HTTP/1.1.
+POST /compute HTTP/1.1<\n>
 Host: localhost:8080.
 Content-Type: application/json.
 cache-control: no-cache.
