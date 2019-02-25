@@ -10,7 +10,7 @@ Postman-Token: 57030a99-2390-4c6d-8f9a-a39aef830932
     "a":10 ,
     "b":10, 
     "c":10
-}------WebKitFormBoundary7MA4YWxkTrZu0gW--
+}
 
 
 ##Get all events from 01/01/20019 onwards. Note that username has to be passed as only if the user is logged the request is allowed
