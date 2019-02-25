@@ -1,16 +1,16 @@
 # standardc
 
-POST /compute HTTP/1.1
-Host: localhost:8080
-Content-Type: application/json
-cache-control: no-cache
-Postman-Token: 57030a99-2390-4c6d-8f9a-a39aef830932
-{
-	"x":20 ,
-    "a":10 ,
-    "b":10, 
-    "c":10
-}
+POST /compute HTTP/1.1.
+Host: localhost:8080.
+Content-Type: application/json.
+cache-control: no-cache.
+Postman-Token: 57030a99-2390-4c6d-8f9a-a39aef830932.
+{.
+	"x":20 ,.
+    "a":10 ,.
+    "b":10, .
+    "c":10.
+}.
 
 
 ##Get all events from 01/01/20019 onwards. Note that username has to be passed as only if the user is logged the request is allowed
